@@ -38,9 +38,12 @@ assert len(URL_FEATURES) == model.n_features_in_, (
 # Configuration
 # ---------------------------------------------------------------------------
 
-# Lower threshold biases towards catching phishing at the cost of more false
-# positives. Adjust between 0.3–0.5 based on your acceptable false-positive rate.
-PHISHING_THRESHOLD = 0.4
+# Threshold for classifying a URL as phishing.
+# Set to 0.75 based on empirical testing: the model's true positives (real
+# phishing) score 99%+, while borderline false positives (e.g. facebook.com)
+# score ~66%. 0.75 sits safely in the gap between them.
+# Lower = catches more phishing but more false positives; raise if needed.
+PHISHING_THRESHOLD = 0.75
 
 MAX_URL_LENGTH = 2048
 
